@@ -51,8 +51,6 @@ const WeatherCard = (props) => {
           setTempMin(response.data.main.temp_min);
           setTempMax(response.data.main.temp_max);
           setIcon(response.data.weather[0].icon);
-
-          console.log("dataAaaaaaaaaaaaaaaaaaaaaa:", response.data);
         });
     } catch (error) {
       console.log(error);
@@ -74,8 +72,8 @@ const WeatherCard = (props) => {
         </View>
 
         <Text>{clima}</Text>
-        <Text style={styles.subs}> spantemperatura Maxima: {tempMax}</Text>
-        <Text style={styles.subs}>temperatura Minima: {tempMin}</Text>
+        <Text style={styles.subs}>Temperatura Maxima: {tempMax}</Text>
+        <Text style={styles.subs}>Temperatura Minima: {tempMin}</Text>
       </View>
 
       <Icon

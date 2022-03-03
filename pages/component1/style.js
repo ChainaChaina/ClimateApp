@@ -11,6 +11,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
   },
+  emptyList: {
+    marginTop: 100,
+    textAlign: "center",
+    fontSize: 18,
+  },
+  emptyListSub: {
+    textAlign: "center",
+    opacity: 0.7,
+  },
 });
 
 export default styles;

@@ -54,7 +54,10 @@ const Component1 = () => {
       />
 
       {cities.length == 0 ? (
-        <Text>Nenhuma cidade encontrada</Text>
+        <View>
+          <Text style={styles.emptyList}>Nenhuma cidade encontrada</Text>
+          <Text style={styles.emptyListSub}>confira o nome da cidade.</Text>
+        </View>
       ) : (
         cities.map((city) => (
           <SmallCard
