@@ -10,6 +10,8 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
+    borderColor: "#bdbdbd",
+    borderRadius: 5,
   },
   emptyList: {
     marginTop: 100,

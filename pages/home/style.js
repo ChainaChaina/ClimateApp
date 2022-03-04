@@ -37,6 +37,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     opacity: 0.7,
   },
+  spacer: {
+    minHeight: 150,
+  },
 });
 
 export default styles;

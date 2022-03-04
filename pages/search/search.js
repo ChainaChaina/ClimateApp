@@ -6,14 +6,13 @@ import { useWeatherContext } from "../../context/WeatherContext";
 
 import styles from "./style";
 
-const Component1 = () => {
+const Search = () => {
   const [text, onChangeText] = React.useState("");
   const [cities, setCities] = React.useState([]);
   const { favorites, setFavorites } = useWeatherContext();
 
   async function searchCity(text) {
     text = text.replace(/ +/g, "-");
-    console.log(text);
     try {
       axios
         .get(
@@ -30,7 +29,6 @@ const Component1 = () => {
           for (var i = 0; i < response.data.length; i++) {
             getData(response.data[i]);
           }
-          console.log(cities);
         });
     } catch (error) {
       console.log(error);
@@ -73,4 +71,4 @@ const Component1 = () => {
     </ScrollView>
   );
 };
-export default Component1;
+export default Search;

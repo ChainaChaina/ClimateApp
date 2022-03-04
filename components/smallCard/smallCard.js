@@ -11,13 +11,12 @@ const SmallCard = (props) => {
   const navigation = useNavigation();
 
   function handleNext(props) {
-    console.log(props);
     if (favorites == undefined) {
       setFavorites(props);
     } else {
       setFavorites([...favorites, props]);
     }
-    navigation.navigate("home");
+    navigation.navigate("Home");
   }
 
   return (

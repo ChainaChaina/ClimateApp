@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Text, TextInput, View, Image } from "react-native";
+import { Text, TextInput, View, Image, Pressable } from "react-native";
 import { Icon } from "react-native-elements";
 import { useWeatherContext } from "../../context/WeatherContext";
 import { useNavigation } from "@react-navigation/native";
@@ -24,14 +24,6 @@ const WeatherCard = (props) => {
     favorites.splice(props.index, 1);
     let aux = [...favorites];
     setFavorites(aux);
-
-    // setFavorites(
-    //   favorites.filter((city) => {
-    //     city.name != props.name && city.lat != props.lat;
-    //   })
-    // );
-    // console.log(favorites.slice(props.index - 1, 1));
-    // setFavorites(favorites.slice(props.index - 1, 1));
   }
 
   async function getWeather() {
@@ -58,32 +50,38 @@ const WeatherCard = (props) => {
   }
 
   return (
-    <View style={styles.cardBody}>
-      <View>
-        <View style={styles.title}>
-          <Text style={styles.name}>{props.name} </Text>
-          <Image
-            style={styles.icon}
-            source={{
-              uri: `https://openweathermap.org/img/w/${icon}.png`,
-            }}
-          />
-          <Text style={styles.temp}>{temp}ºC</Text>
+    <Pressable
+      onPress={() => {
+        navigation.navigate("Clima", { props });
+      }}
+    >
+      <View style={styles.cardBody}>
+        <View>
+          <View style={styles.title}>
+            <Text style={styles.name}>{props.name} </Text>
+            <Image
+              style={styles.icon}
+              source={{
+                uri: `https://openweathermap.org/img/w/${icon}.png`,
+              }}
+            />
+            <Text style={styles.temp}>{temp}ºC</Text>
+          </View>
+
+          <Text>{clima}</Text>
+          <Text style={styles.subs}>Temperatura Maxima: {tempMax}ºC</Text>
+          <Text style={styles.subs}>Temperatura Minima: {tempMin}ºC</Text>
         </View>
 
-        <Text>{clima}</Text>
-        <Text style={styles.subs}>Temperatura Maxima: {tempMax}</Text>
-        <Text style={styles.subs}>Temperatura Minima: {tempMin}</Text>
+        <Icon
+          onPress={() => deleteMe()}
+          size={30}
+          name="close"
+          type="evilicon"
+          color="#e74c3c"
+        />
       </View>
-
-      <Icon
-        onPress={() => deleteMe()}
-        size={30}
-        name="close"
-        type="evilicon"
-        color="#e74c3c"
-      />
-    </View>
+    </Pressable>
   );
 };
 

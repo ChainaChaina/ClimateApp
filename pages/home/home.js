@@ -12,32 +12,35 @@ const HomeApp = () => {
   const { favorites, setFavorites } = useWeatherContext();
 
   function goThere() {
-    navigation.navigate("Component1");
+    navigation.navigate("Pesquisar");
   }
 
   useEffect(() => {
-    console.log(favorites);
-    storeData(favorites);
-    let teste = getData();
-    console.log(teste.then((res) => console.log(res)));
+    if (favorites[0] != null) {
+      storeData(favorites);
+    }
+    if (favorites[0] == null) {
+      getData();
+    }
+    return function cleanup() {};
   });
 
-  const storeData = async (favorites) => {
+  const storeData = async (value) => {
+    aux = JSON.stringify(value);
     try {
-      console.log("salvo");
-      const jsonValue = JSON.stringify(value);
-      await AsyncStorage.setItem("FavoriteKey", jsonValue);
+      await AsyncStorage.setItem("favorited", aux);
     } catch (e) {
-      // saving error
+      console.log(error);
     }
   };
 
   const getData = async () => {
     try {
-      const jsonValue = await AsyncStorage.getItem("FavoriteKey");
-      return jsonValue != null ? JSON.parse(jsonValue) : null;
+      const jsonValue = await AsyncStorage.getItem("favorited");
+      let aux = jsonValue != null ? JSON.parse(jsonValue) : null;
+      setFavorites(aux);
     } catch (e) {
-      // error reading value
+      console.log(error);
     }
   };
 
@@ -73,6 +76,7 @@ const HomeApp = () => {
             ></WeatherCard>
           ))
         )}
+        <View style={styles.spacer}></View>
       </ScrollView>
     </View>
   );
